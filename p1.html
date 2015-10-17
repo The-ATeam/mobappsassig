@@ -66,13 +66,20 @@ html, body { height: 100%; margin: 0; padding: 0; }
         <script>
        var map;
 function mapLocation(position) {
+    var currentPosition = {lat: position.coords.latitude, lng: position.coords.longitude}
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: position.coords.latitude, lng: position.coords.longitude},
+    center: currentPosition,
     zoom: 17
   }); 
+    var marker = new google.maps.Marker({
+    position: currentPosition,
+    map: map,
+    title: 'current position'
+  });
 }
-            navigator.geolocation.getCurrentPosition(mapLocation)
-            
+        navigator.geolocation.getCurrentPosition(mapLocation)
+        
+        
         function startRunning(){
         }
         
