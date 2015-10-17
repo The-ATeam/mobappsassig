@@ -65,12 +65,14 @@ html, body { height: 100%; margin: 0; padding: 0; }
 </div>
         <script>
        var map;
-function initMap() {
+function mapLocation(position) {
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -37.9120467, lng: 145.1343136},
+    center: {lat: position.coords.latitude, lng: position.coords.longitude},
     zoom: 17
   }); 
 }
+            navigator.geolocation.getCurrentPosition(mapLocation)
+            
         function startRunning(){
         }
         
