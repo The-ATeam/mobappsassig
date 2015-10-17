@@ -33,27 +33,27 @@ html, body { height: 100%; margin: 0; padding: 0; }
     <span class="mdl-layout-title">YYST - Drawer</span>
   </div>
   <main class="mdl-layout__content">
+
     <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
       <div class="page-content">
-     
           <!-- Your content goes here -->
-       <div id="map"></div>  
-        
-        
-        
-        
-        
-        
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"onClick = "startRunning()">
+       <div id="map"></div> 
+        <button id='start' class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"onClick = "startRunning()">
   Start Run
+</button>
+<button id='stop' class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"onClick = "stopRunning()">
+  Stop Run
 </button>
         
         
         </div>
         
     </section>
+
     <section class="mdl-layout__tab-panel" id="scroll-tab-2">
-      <div class="page-content"><!-- Your content goes here --></div>
+      <div class="page-content"><!-- Your content goes here -->
+      <output id="outputArea"></output>
+    </div>
     </section>
     <section class="mdl-layout__tab-panel" id="scroll-tab-3">
       <div class="page-content"><!-- Your content goes here --></div>
@@ -63,6 +63,7 @@ html, body { height: 100%; margin: 0; padding: 0; }
     
   </main>
 </div>
+
         <script>
        var map;
 function mapLocation(position) {
@@ -71,12 +72,24 @@ function mapLocation(position) {
     zoom: 17
   }); 
 }
-            navigator.geolocation.getCurrentPosition(mapLocation)
+        navigator.geolocation.getCurrentPosition(mapLocation)
             
         function startRunning(){
+          startTime = new Date().getTime();//document.getElementById("outputArea");
+
+          //outputArea.innerHTML = startTime;
         }
+
+        function stopRunning(){
+           endTime = new Date().getTime();
+
+        //displaying time between pressing start and stop in seconds
+        outputArea.innerHTML = (endTime - startTime)/1000;
+        }
+        //outputArea.innerHTML = endTime - startTime;
         
         </script>
+
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?v=3&amp;key=&amp;callback=initMap">
     </script>  
